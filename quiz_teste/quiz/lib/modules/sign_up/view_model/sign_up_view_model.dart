@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/utils/navigation_utils.dart';
 
 class SignUpViewModel extends ChangeNotifier {
   bool autoValidate = false;
@@ -88,5 +89,9 @@ class SignUpViewModel extends ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  navigateToLoginPage(BuildContext context) {
+    backPreviousPage(context);
   }
 }
