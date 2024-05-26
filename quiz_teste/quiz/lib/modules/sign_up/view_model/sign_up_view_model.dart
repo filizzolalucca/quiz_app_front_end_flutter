@@ -65,7 +65,7 @@ class SignUpViewModel extends ChangeNotifier {
       confirmPassword = null;
       return "Confirme a senha";
     } else {
-      if (password == confirmPassword) {
+      if (password == value) {
         confirmPassword == value;
         return null;
       } else {
@@ -80,6 +80,7 @@ class SignUpViewModel extends ChangeNotifier {
     if (key.currentState != null) {
       if (key.currentState!.validate()) {
         key.currentState!.save();
+        //aqui vou fazer a conexao com o back
         print("Nome $nickName");
         print("Email $email");
       } else {
