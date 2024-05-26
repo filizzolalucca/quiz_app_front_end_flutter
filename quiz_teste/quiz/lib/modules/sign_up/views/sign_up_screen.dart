@@ -64,7 +64,7 @@ class SignupPage extends StatelessWidget {
                   const Text("Ja tem uma conta ?"),
                   TextButton(
                       onPressed: () {
-                        signUpViewModel.sendForm();
+                        signUpViewModel.navigateToLoginPage(context);
                       },
                       child: const Text(
                         "Login",

@@ -78,7 +78,7 @@ class LoginPage extends StatelessWidget {
             backgroundColor: Colors.purple,
           ),
           child: const Text(
-            "Criar Conta",
+            "Entrar",
             style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         )

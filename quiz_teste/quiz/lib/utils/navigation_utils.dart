@@ -19,6 +19,10 @@ void openCreateAccount(BuildContext context) async {
   );
 }
 
+void backPreviousPage(BuildContext context) {
+  Navigator.pop(context);
+}
+
 void openUserDetails(BuildContext context, UserModel userModel) async {
   Navigator.push(
     context,
