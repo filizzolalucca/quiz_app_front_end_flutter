@@ -8,8 +8,20 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignUpViewModel signUpViewModel = context.watch<SignUpViewModel>();
+
     return Scaffold(
-      body: SingleChildScrollView(
+        body: Consumer<SignUpViewModel>(builder: (context, viewModel, child) {
+      if (viewModel.loading) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+            backgroundColor: Colors.grey,
+            strokeWidth: 5,
+          ),
+        );
+      }
+
+      return SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
@@ -46,7 +58,7 @@ class SignupPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 3, left: 3),
                   child: ElevatedButton(
                     onPressed: () {
-                      signUpViewModel.sendForm();
+                      signUpViewModel.sendForm(context);
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
@@ -75,8 +87,8 @@ class SignupPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    }));
   }
 
 //viewModel
