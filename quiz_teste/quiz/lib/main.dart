@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/modules/sign_in/view_model/sign_in_view_model.dart';
 import 'package:quiz/modules/sign_in/views/sign_in_screen.dart';
-import 'package:quiz/modules/sign_up/view_model/sign_up_view_model.dart';
 import 'package:quiz/modules/user_exemple/view_models/users_view_model.dart';
 import 'package:quiz/utils/injection_container.dart';
 

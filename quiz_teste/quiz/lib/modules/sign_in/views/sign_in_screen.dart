@@ -11,7 +11,17 @@ class LoginPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
+          body: Consumer<SignInViewModel>(builder: (context, viewModel, child) {
+        if (viewModel.loading) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+              backgroundColor: Colors.grey,
+              strokeWidth: 5,
+            ),
+          );
+        }
+        return Container(
           margin: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -19,14 +29,14 @@ class LoginPage extends StatelessWidget {
               _header(context),
               Form(
                 key: signInViewModel.key,
-                child: _inputField(signInViewModel),
+                child: _inputField(signInViewModel, context),
                 autovalidateMode: AutovalidateMode.always,
               ),
               _signup(signInViewModel, context),
             ],
           ),
-        ),
-      ),
+        );
+      })),
     );
   }
 
@@ -42,19 +52,19 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _inputField(SignInViewModel signInViewModel) {
+  _inputField(SignInViewModel signInViewModel, context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFormField(
           decoration: InputDecoration(
-              hintText: "Nickname",
+              hintText: "Email",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
               fillColor: Colors.purple.withOpacity(0.1),
               filled: true,
-              prefixIcon: const Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.email)),
           validator: (value) => signInViewModel.validarNome(value),
         ),
         const SizedBox(height: 10),
@@ -71,7 +81,9 @@ class LoginPage extends StatelessWidget {
             obscureText: true),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            signInViewModel.sendForm(context);
+          },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
