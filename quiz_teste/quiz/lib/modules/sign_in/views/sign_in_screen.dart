@@ -13,7 +13,13 @@ class LoginPage extends StatelessWidget {
       home: Scaffold(
           body: Consumer<SignInViewModel>(builder: (context, viewModel, child) {
         if (viewModel.loading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+              backgroundColor: Colors.grey,
+              strokeWidth: 5,
+            ),
+          );
         }
         return Container(
           margin: const EdgeInsets.all(24),
@@ -52,13 +58,13 @@ class LoginPage extends StatelessWidget {
       children: [
         TextFormField(
           decoration: InputDecoration(
-              hintText: "Nickname",
+              hintText: "Email",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
               fillColor: Colors.purple.withOpacity(0.1),
               filled: true,
-              prefixIcon: const Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.email)),
           validator: (value) => signInViewModel.validarNome(value),
         ),
         const SizedBox(height: 10),

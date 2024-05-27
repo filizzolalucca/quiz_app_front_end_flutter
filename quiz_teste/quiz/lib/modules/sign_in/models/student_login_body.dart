@@ -6,8 +6,8 @@ class StudentLoginRequestBody {
 
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
-      'password': password,
+      "email": name,
+      "password": password,
     };
   }
 }

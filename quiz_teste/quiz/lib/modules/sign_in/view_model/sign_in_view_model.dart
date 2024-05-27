@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/modules/sign_in/models/student_login_body.dart';
@@ -28,7 +30,7 @@ class SignInViewModel extends ChangeNotifier {
   String? validarNome(String? value) {
     if (value == null || value.isEmpty) {
       _nickName = null; // Reseta o nickname se for nulo ou vazio
-      return "Informe o nickname";
+      return "Informe o email";
     } else {
       _nickName = value;
       return null;
@@ -55,13 +57,17 @@ class SignInViewModel extends ChangeNotifier {
         if (_nickName != null && _password != null) {
           var studentLoginRequestBody =
               StudentLoginRequestBody(name: _nickName!, password: _password!);
-          var response = await webService.loginUser(studentLoginRequestBody);
           setLoading(true);
+
+          var response = await webService.loginUser(studentLoginRequestBody);
           if (response is Success) {
-            String userId = response.response as String;
-            if (userId.isNotEmpty) {
-              await _saveUserId(userId);
+            var userId = response.response as String?;
+            print(userId.toString());
+            if (userId is String) {
+              //await _saveUserId(userId);
+              print("e double");
               // Navegar para a próxima tela ou exibir uma mensagem de sucesso
+              _showDialog(context, 'Usuário salvo'); // teste
             } else {
               _showDialog(context, 'Usuário não encontrado');
             }
@@ -69,12 +75,14 @@ class SignInViewModel extends ChangeNotifier {
             if (response.code == 200) {
               _showDialog(context, 'Usuario nao encontrado');
             } else {
-              _showDialog(context, 'Erro: ${response.erorResponse}');
+              _showDialog(context, 'Usuario nao encontrado');
             }
           }
           setLoading(false);
         }
       } else {
+        _showDialog(
+            context, 'Confira se esta preenchendo os campos corretamente');
         _autoValidate = true;
       }
     }
@@ -85,9 +93,9 @@ class SignInViewModel extends ChangeNotifier {
     openCreateAccount(context);
   }
 
-  Future<void> _saveUserId(String id) async {
+  Future<void> _saveUserId(int id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user_id', id);
+    await prefs.setInt('user_id', id);
   }
 
   void _showDialog(BuildContext context, String message) {

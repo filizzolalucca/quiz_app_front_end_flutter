@@ -16,10 +16,14 @@ class LoginWebService extends WebServiceType {
       StudentLoginRequestBody studentLoginRequestBody) async {
     try {
       var url = Uri.parse(USER_LOGIN);
-      var response =
-          await http.post(url, body: jsonEncode(studentLoginRequestBody));
-      if (200 == response.statusCode) {
+      var response = await http.post(url,
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          },
+          body: jsonEncode(studentLoginRequestBody.toJson()));
+      if (201 == response.statusCode) {
         String responseBody = response.body;
+
         if (responseBody.isNotEmpty) {
           return Success(code: 200, response: response);
         } else {
@@ -38,3 +42,4 @@ class LoginWebService extends WebServiceType {
     }
   }
 }
+class UserId {}
