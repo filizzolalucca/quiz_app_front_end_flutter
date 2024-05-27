@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/modules/sign_in/models/studen_login_id.dart';
 import 'package:quiz/modules/sign_in/models/student_login_body.dart';
 import 'package:quiz/modules/sign_in/repo/login_web_service.dart';
 import 'package:quiz/utils/api_status.dart';
@@ -61,16 +62,9 @@ class SignInViewModel extends ChangeNotifier {
 
           var response = await webService.loginUser(studentLoginRequestBody);
           if (response is Success) {
-            var userId = response.response as String?;
-            print(userId.toString());
-            if (userId is String) {
-              //await _saveUserId(userId);
-              print("e double");
-              // Navegar para a próxima tela ou exibir uma mensagem de sucesso
-              _showDialog(context, 'Usuário salvo'); // teste
-            } else {
-              _showDialog(context, 'Usuário não encontrado');
-            }
+            var userID = response.response as UserId;
+            await _saveUserId(userID.id);
+            _showDialog(context, 'Usuário salvo'); // teste
           } else if (response is Failure) {
             if (response.code == 200) {
               _showDialog(context, 'Usuario nao encontrado');

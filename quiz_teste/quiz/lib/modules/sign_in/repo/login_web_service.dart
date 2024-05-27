@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:quiz/modules/sign_in/models/studen_login_id.dart';
 import 'package:quiz/modules/sign_in/models/student_login_body.dart';
 import 'package:quiz/utils/api_status.dart';
 import 'package:quiz/utils/constants.dart';
@@ -25,7 +26,7 @@ class LoginWebService extends WebServiceType {
         String responseBody = response.body;
 
         if (responseBody.isNotEmpty) {
-          return Success(code: 200, response: response);
+          return Success(code: 200, response: userIdFromJson(response.body));
         } else {
           return Failure(code: 200, erorResponse: 'Usuário não encontrado');
         }
@@ -42,4 +43,3 @@ class LoginWebService extends WebServiceType {
     }
   }
 }
-class UserId {}
