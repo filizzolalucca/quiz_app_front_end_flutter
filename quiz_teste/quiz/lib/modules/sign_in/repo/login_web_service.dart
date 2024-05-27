@@ -1,22 +1,25 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:quiz/modules/user_exemple/models/user_list_model.dart';
+import 'package:quiz/modules/sign_in/models/student_login_body.dart';
 import 'package:quiz/utils/api_status.dart';
 import 'package:quiz/utils/constants.dart';
 
 abstract class WebServiceType {
-  Future<Object> getUsers();
+  Future<Object> loginUser(StudentLoginRequestBody studentLoginRequestBody);
 }
 
-class UserWebService extends WebServiceType {
-  Future<Object> getUsers() async {
+class LoginWebService extends WebServiceType {
+  @override
+  Future<Object> loginUser(
+      StudentLoginRequestBody studentLoginRequestBody) async {
     try {
-      var url = Uri.parse(USER_LIST);
-      var response = await http.get(url);
+      var url = Uri.parse(USER_LOGIN);
+      var response =
+          await http.post(url, body: jsonEncode(studentLoginRequestBody));
       if (200 == response.statusCode) {
-        return Success(
-            code: 200, response: userListModelFromJson(response.body));
+        return Success(code: 200, response: response);
       }
 
       return Failure(
