@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:quiz/modules/user_exemple/models/user_error.dart';
 import 'package:quiz/modules/user_exemple/models/user_list_model.dart';
-import 'package:quiz/modules/user_exemple/repo/api_status.dart';
+import 'package:quiz/utils/api_status.dart';
 import 'package:quiz/modules/user_exemple/repo/user_web_services.dart';
 import 'package:quiz/utils/injection_container.dart';
 
@@ -13,7 +11,7 @@ class UserViewModel extends ChangeNotifier {
   UserError? _userError;
   UserModel? _addingUser;
 
-  UserViewModel.initialize(){
+  UserViewModel.initialize() {
     getUsers();
   }
 
@@ -39,16 +37,16 @@ class UserViewModel extends ChangeNotifier {
     setLoading(true);
     var webService = locator<UserWebService>();
     var response = await webService.getUsers();
-    if ( response is Success) {
+    if (response is Success) {
       setUserListModel(response.response as List<UserModel>);
     }
 
-    if(response is Failure ) {
+    if (response is Failure) {
       UserError userError = UserError(
         code: response.code,
         message: response.erorResponse.toString(), //Olhar isso
-        );
-        setUserError(userError);
+      );
+      setUserError(userError);
     }
 
     setLoading(false);

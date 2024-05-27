@@ -19,7 +19,12 @@ class LoginWebService extends WebServiceType {
       var response =
           await http.post(url, body: jsonEncode(studentLoginRequestBody));
       if (200 == response.statusCode) {
-        return Success(code: 200, response: response);
+        String responseBody = response.body;
+        if (responseBody.isNotEmpty) {
+          return Success(code: 200, response: response);
+        } else {
+          return Failure(code: 200, erorResponse: 'Usuário não encontrado');
+        }
       }
 
       return Failure(

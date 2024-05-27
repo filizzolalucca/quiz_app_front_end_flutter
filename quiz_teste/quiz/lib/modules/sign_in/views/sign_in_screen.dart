@@ -11,7 +11,11 @@ class LoginPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
+          body: Consumer<SignInViewModel>(builder: (context, viewModel, child) {
+        if (viewModel.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return Container(
           margin: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -19,14 +23,14 @@ class LoginPage extends StatelessWidget {
               _header(context),
               Form(
                 key: signInViewModel.key,
-                child: _inputField(signInViewModel),
+                child: _inputField(signInViewModel, context),
                 autovalidateMode: AutovalidateMode.always,
               ),
               _signup(signInViewModel, context),
             ],
           ),
-        ),
-      ),
+        );
+      })),
     );
   }
 
@@ -42,7 +46,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _inputField(SignInViewModel signInViewModel) {
+  _inputField(SignInViewModel signInViewModel, context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -71,7 +75,9 @@ class LoginPage extends StatelessWidget {
             obscureText: true),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            signInViewModel.sendForm(context);
+          },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
