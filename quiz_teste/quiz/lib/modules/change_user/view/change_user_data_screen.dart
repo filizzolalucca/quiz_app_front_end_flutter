@@ -26,7 +26,7 @@ class ChangeUserPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Nickname: ${viewModel.nickname ?? "Unknown"}',
+                  'Nickname: ${viewModel.nickNameTitle ?? "Unknown"}',
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
@@ -51,7 +51,6 @@ class ChangeUserPage extends StatelessWidget {
                       Form(
                         key: viewModel.key,
                         child: TextFormField(
-                          initialValue: viewModel.nickname,
                           decoration: InputDecoration(
                             hintText: "Novo Nickname",
                             border: OutlineInputBorder(

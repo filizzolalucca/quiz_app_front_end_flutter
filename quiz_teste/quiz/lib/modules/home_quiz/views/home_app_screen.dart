@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz/modules/change_user/viewModel/change_user_view_model.dart';
 import 'package:quiz/modules/home_quiz/view_model/home_app_view_model.dart';
 
 class HomeAppPage extends StatelessWidget {
@@ -33,7 +34,13 @@ class HomeAppPage extends StatelessWidget {
             ],
             currentIndex: viewModel.selectedIndex,
             selectedItemColor: Color.fromARGB(255, 121, 0, 93),
-            onTap: viewModel.onItemTapped,
+            onTap: (index) {
+              viewModel.onItemTapped(index);
+              if (index == 1) {
+                final changeUserViewModel = context.read<ChangeUserViewModel>();
+                changeUserViewModel.loadData();
+              }
+            },
           );
         },
       ),

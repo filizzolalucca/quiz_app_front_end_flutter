@@ -67,7 +67,7 @@ class SignInViewModel extends ChangeNotifier {
             await _saveUserEmail(userID.email);
             await _saveUserNickName(userID.nome);
             navigateToHomePage(context);
-            _showDialog(context, 'Usuário salvo'); // teste
+            _showDialog(context, 'Usuário logado'); // teste
           } else if (response is Failure) {
             if (response.code == 200) {
               _showDialog(context, 'Usuario nao encontrado');
