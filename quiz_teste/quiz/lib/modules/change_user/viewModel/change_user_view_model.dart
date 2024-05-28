@@ -72,12 +72,12 @@ class ChangeUserViewModel extends ChangeNotifier {
         key.currentState!.save();
         var webService = locator<ChangeUserWebService>();
         if (_nickName != null) {
-          var changeUserResponseBody =
+          var changeUserRequestBody =
               UserChangeRequestBody(idUsuario: _id!, nome: _nickName!);
           setLoading(true);
 
           var response =
-              await webService.changeUserNickname(changeUserResponseBody);
+              await webService.changeUserNickname(changeUserRequestBody);
           if (response is Success) {
             var userAlterado = response.response as UserChangeResponseBody;
             if (userAlterado.edited) {

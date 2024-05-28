@@ -17,12 +17,14 @@ class ChangeUserWebService extends WebServiceType {
   Future<Object> changeUserNickname(
       UserChangeRequestBody userChangeRequestBody) async {
     try {
-      var url = Uri.parse(USER_LOGIN);
+      var url = Uri.parse(USER_CHANGE);
       var response = await http.post(url,
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
           },
           body: jsonEncode(userChangeRequestBody.toJson()));
+      print(response.statusCode);
+      print(response.body);
       if (201 == response.statusCode) {
         String responseBody = response.body;
 
