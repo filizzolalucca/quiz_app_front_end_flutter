@@ -51,7 +51,6 @@ class ChangeUserPage extends StatelessWidget {
                       Form(
                         key: viewModel.key,
                         child: TextFormField(
-                          initialValue: viewModel.nickNameTitle,
                           decoration: InputDecoration(
                             hintText: "Novo Nickname",
                             border: OutlineInputBorder(

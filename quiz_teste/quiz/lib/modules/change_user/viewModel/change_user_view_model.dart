@@ -16,6 +16,10 @@ class ChangeUserViewModel extends ChangeNotifier {
   GlobalKey<FormState> _key = GlobalKey();
 
   ChangeUserViewModel() {
+    loadData();
+  }
+
+  loadData() {
     _loadUserName();
     _loadUserID();
   }

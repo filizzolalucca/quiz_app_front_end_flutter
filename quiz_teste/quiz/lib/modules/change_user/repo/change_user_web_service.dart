@@ -23,8 +23,6 @@ class ChangeUserWebService extends WebServiceType {
             HttpHeaders.contentTypeHeader: 'application/json',
           },
           body: jsonEncode(userChangeRequestBody.toJson()));
-      print(response.statusCode);
-      print(response.body);
       if (201 == response.statusCode) {
         String responseBody = response.body;
 
