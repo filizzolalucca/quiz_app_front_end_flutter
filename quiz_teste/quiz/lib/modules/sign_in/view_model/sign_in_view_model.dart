@@ -64,6 +64,9 @@ class SignInViewModel extends ChangeNotifier {
           if (response is Success) {
             var userID = response.response as UserId;
             await _saveUserId(userID.id);
+            await _saveUserEmail(userID.email);
+            await _saveUserNickName(userID.nome);
+            navigateToHomePage(context);
             _showDialog(context, 'Usuário salvo'); // teste
           } else if (response is Failure) {
             if (response.code == 200) {
@@ -87,9 +90,23 @@ class SignInViewModel extends ChangeNotifier {
     openCreateAccount(context);
   }
 
+  navigateToHomePage(BuildContext context) {
+    openHomeApp(context);
+  }
+
   Future<void> _saveUserId(int id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('user_id', id);
+  }
+
+  Future<void> _saveUserEmail(String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_email', email);
+  }
+
+  Future<void> _saveUserNickName(String nickname) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_nickname', nickname);
   }
 
   void _showDialog(BuildContext context, String message) {
