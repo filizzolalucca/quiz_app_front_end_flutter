@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/modules/quiz_flow/select_subjects/models/materia.dart';
@@ -6,6 +5,8 @@ import 'package:quiz/modules/quiz_flow/select_subjects/view/subject_list_row.dar
 import 'package:quiz/modules/quiz_flow/select_subjects/viewModel/subjects_view_model.dart';
 
 class SchoolSubjectScreen extends StatelessWidget {
+  const SchoolSubjectScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
