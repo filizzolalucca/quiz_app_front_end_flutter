@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:quiz/modules/sign_up/models/studen_cadastro_return.dart';
-import 'package:quiz/modules/sign_up/models/student_cadastro_body.dart';
+import 'package:quiz/modules/begin/sign_up/models/studen_cadastro_return.dart';
+import 'package:quiz/modules/begin/sign_up/models/student_cadastro_body.dart';
 import 'package:quiz/utils/api_status.dart';
 import 'package:quiz/utils/constants.dart';
 import 'package:http/http.dart' as http;

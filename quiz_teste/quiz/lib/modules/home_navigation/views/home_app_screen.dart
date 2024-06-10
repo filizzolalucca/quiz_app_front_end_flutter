@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/modules/change_user/viewModel/change_user_view_model.dart';
-import 'package:quiz/modules/home_quiz/view_model/home_app_view_model.dart';
+import 'package:quiz/modules/home_navigation/view_model/home_app_view_model.dart';
 
 class HomeAppPage extends StatelessWidget {
   @override

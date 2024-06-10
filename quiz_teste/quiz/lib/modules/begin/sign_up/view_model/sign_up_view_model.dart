@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/modules/sign_up/models/studen_cadastro_return.dart';
-import 'package:quiz/modules/sign_up/models/student_cadastro_body.dart';
-import 'package:quiz/modules/sign_up/repo/cadastro_web_service.dart';
+import 'package:quiz/modules/begin/sign_up/models/studen_cadastro_return.dart';
+import 'package:quiz/modules/begin/sign_up/models/student_cadastro_body.dart';
+import 'package:quiz/modules/begin/sign_up/repo/cadastro_web_service.dart';
 import 'package:quiz/utils/api_status.dart';
 import 'package:quiz/utils/injection_container.dart';
 import 'package:quiz/utils/navigation_utils.dart';

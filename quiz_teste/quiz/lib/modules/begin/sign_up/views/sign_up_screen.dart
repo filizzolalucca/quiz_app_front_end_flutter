@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/modules/sign_up/view_model/sign_up_view_model.dart';
+import 'package:quiz/modules/begin/sign_up/view_model/sign_up_view_model.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
