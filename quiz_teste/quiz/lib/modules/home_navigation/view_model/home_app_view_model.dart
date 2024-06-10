@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:quiz/modules/change_user/view/change_user_data_screen.dart';
-import 'package:quiz/modules/select_subjects/view/subjects_screen.dart';
+import 'package:quiz/modules/quiz_flow/select_subjects/view/subjects_screen.dart';
 
 class HomeAppPageViewModel extends ChangeNotifier {
   BuildContext context;

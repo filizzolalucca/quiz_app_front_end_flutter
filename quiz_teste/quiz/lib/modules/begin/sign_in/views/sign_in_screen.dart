@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/modules/sign_in/view_model/sign_in_view_model.dart';
+import 'package:quiz/modules/begin/sign_in/view_model/sign_in_view_model.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
