@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quiz/modules/quiz_flow/quiz/model/quiz_data.dart';
+import 'package:quiz/utils/navigation_utils.dart';
 
 class QuizViewModel extends ChangeNotifier {
   bool _loading = false;
@@ -20,7 +21,7 @@ class QuizViewModel extends ChangeNotifier {
   int get currentScore => _currentScore;
   int? get selectedAswerIndex => _selectedAnswerIndex;
 
-  answerQuestion(bool isCorrect, int answerIndex) async {
+  answerQuestion(bool isCorrect, int answerIndex, context) async {
     if (_hasAnswered) return; // Prevent answering multiple times
 
     _hasAnswered = true;
@@ -52,7 +53,10 @@ class QuizViewModel extends ChangeNotifier {
         _selectedAnswerIndex = null;
         notifyListeners();
       } else {
+        //chamaro back -> falta;
+
         //Navegar para tela de feedBack com o score
+        openQuizFeedBack(context, currentScore);
       }
     });
 

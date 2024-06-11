@@ -47,7 +47,7 @@ class QuizPageScreen extends StatelessWidget {
                           isSelected: viewModel.selectedAswerIndex == idx,
                           isCorrect: answer.correta,
                           onTap: () =>
-                              viewModel.answerQuestion(answer.correta, idx),
+                              viewModel.answerQuestion(answer.correta, idx, context),
                         ),
                         const SizedBox(height: 10),
                       ]);
