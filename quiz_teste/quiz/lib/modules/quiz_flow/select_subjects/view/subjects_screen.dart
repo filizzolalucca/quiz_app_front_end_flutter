@@ -16,13 +16,13 @@ class SchoolSubjectScreen extends StatelessWidget {
           return Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              children: [_ui(viewModel)],
+              children: [_ui(viewModel, context)],
             ),
           );
         })));
   }
 
-  _ui(SubjectsViewModel viewModel) {
+  _ui(SubjectsViewModel viewModel, BuildContext context) {
     if (viewModel.loading) {
       return const Center(
         child: CircularProgressIndicator(
@@ -35,7 +35,7 @@ class SchoolSubjectScreen extends StatelessWidget {
 
     return Expanded(
       child: ListView.separated(
-        itemBuilder: (context, index) {
+        itemBuilder: (contextList, index) {
           Materia materia = viewModel.materias[index];
           return SubjectListRow(
               materia: materia,
