@@ -57,13 +57,25 @@ class ResultPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   //Navigator.of(context).pop(); -> tenho que fazer ele voltar no comeco, ver como
-                  viewModel.sendResult(context);
+                  viewModel.backToBegin(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple, // Button background color
                   foregroundColor: Colors.white, // Button text color
                 ),
                 child: const Text('Voltar ao Início'),
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {
+                  viewModel.openLink(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(
+                      255, 39, 108, 176), // Button background color
+                  foregroundColor: Colors.white, // Button text color
+                ),
+                child: const Text('Consultar material de apoio'),
               ),
             ],
           ),

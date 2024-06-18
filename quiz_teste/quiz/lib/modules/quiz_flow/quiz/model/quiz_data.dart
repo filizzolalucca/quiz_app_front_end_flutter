@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final quizDataModel = quizDataModelFromJson(jsonString);
+
 import 'dart:convert';
 
 QuizDataModel quizDataModelFromJson(String str) =>
@@ -6,22 +10,22 @@ QuizDataModel quizDataModelFromJson(String str) =>
 String quizDataModelToJson(QuizDataModel data) => json.encode(data.toJson());
 
 class QuizDataModel {
-  int numeroQuestionarioRealizado;
+  String ajuda;
   List<Question> questions;
 
   QuizDataModel({
-    required this.numeroQuestionarioRealizado,
+    required this.ajuda,
     required this.questions,
   });
 
   factory QuizDataModel.fromJson(Map<String, dynamic> json) => QuizDataModel(
-        numeroQuestionarioRealizado: json["numero_questionario_realizado"],
+        ajuda: json["ajuda"],
         questions: List<Question>.from(
             json["questions"].map((x) => Question.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "numero_questionario_realizado": numeroQuestionarioRealizado,
+        "ajuda": ajuda,
         "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
       };
 }
