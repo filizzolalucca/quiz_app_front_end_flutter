@@ -74,24 +74,25 @@ void openQuizSubject(BuildContext context) async {
   );
 }
 
-void openQuizStart(BuildContext context, QuizDataModel quizDataModel) async {
+void openQuizStart(
+    BuildContext context, QuizDataModel quizDataModel, int idMateria) async {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => ChangeNotifierProvider(
-        create: (context) => QuizViewModel(quizDataModel),
+        create: (context) => QuizViewModel(quizDataModel, idMateria),
         child: const QuizPageScreen(),
       ),
     ),
   );
 }
 
-void openQuizFeedBack(BuildContext context, int score) async {
+void openQuizFeedBack(BuildContext context, int score, String link) async {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => ChangeNotifierProvider(
-        create: (context) => ResultViewModel(score: score),
+        create: (context) => ResultViewModel(score: score, link: link),
         child: const ResultPage(),
       ),
     ),

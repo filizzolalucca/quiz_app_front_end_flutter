@@ -52,20 +52,19 @@ class SubjectsViewModel extends ChangeNotifier {
       if (response is Success) {
         setLoading(false);
         var quizData = response.response as QuizDataModel;
-        //DialogUtils.showDialogAlert(context, 'teste');
-        openQuizStart(context, quizData);
+        openQuizStart(context, quizData, idMateria);
       } else if (response is Failure) {
         if (response.code == 200) {
-          //DialogUtils.showDialogAlert(
-              //context, 'Falha em retornar o Quiz, Sentimos muito');
+          DialogUtils.showDialogAlert(
+              context, 'Falha em retornar o Quiz, Sentimos muito');
         } else {
-          //DialogUtils.showDialogAlert(
-              //context, 'Falha em retornar o Quiz, Sentimos muito');
+          DialogUtils.showDialogAlert(
+              context, 'Falha em retornar o Quiz, Sentimos muito');
         }
       }
     } else {
-      //DialogUtils.showDialogAlert(
-          //context, 'Falha em retornar o Quiz, Sentimos muito');
+      DialogUtils.showDialogAlert(
+          context, 'Falha em retornar o Quiz, Sentimos muito');
     }
     setLoading(false);
     notifyListeners();
