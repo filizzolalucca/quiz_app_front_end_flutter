@@ -57,6 +57,7 @@ class ResultPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   //Navigator.of(context).pop(); -> tenho que fazer ele voltar no comeco, ver como
+                  viewModel.sendResult(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple, // Button background color

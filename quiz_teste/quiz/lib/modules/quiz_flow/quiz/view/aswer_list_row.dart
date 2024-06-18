@@ -15,12 +15,11 @@ class AnswerRow extends StatelessWidget {
     required this.onTap,
   });
 
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: isSelected

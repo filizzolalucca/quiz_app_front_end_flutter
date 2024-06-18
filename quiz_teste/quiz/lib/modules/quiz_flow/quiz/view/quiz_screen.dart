@@ -26,10 +26,9 @@ class QuizPageScreen extends StatelessWidget {
       return SingleChildScrollView(
           child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              height: MediaQuery.of(context).size.height - 50,
               width: double.infinity,
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     const SizedBox(height: 20.0),
@@ -41,16 +40,15 @@ class QuizPageScreen extends StatelessWidget {
                     ...question.answers.asMap().entries.map((entry) {
                       int idx = entry.key;
                       Answer answer = entry.value;
-                      return Column(children: [
-                        AnswerRow(
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                        child: AnswerRow(
                           answer: answer,
                           isSelected: viewModel.selectedAswerIndex == idx,
                           isCorrect: answer.correta,
-                          onTap: () =>
-                              viewModel.answerQuestion(answer.correta, idx),
+                          onTap: () => viewModel.answerQuestion(answer.correta, idx, context),
                         ),
-                        const SizedBox(height: 10),
-                      ]);
+                      );
                     }).toList(),
                   ])));
     }));
