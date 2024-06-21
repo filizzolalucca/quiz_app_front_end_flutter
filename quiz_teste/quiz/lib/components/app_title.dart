@@ -1,0 +1,19 @@
+import 'package:flutter/cupertino.dart';
+
+class AppTitle extends StatelessWidget {
+  final String text;
+  const AppTitle({super.key, this.text = ''});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        text,
+         style:const TextStyle(
+          fontSize: 20.0,
+           fontWeight: FontWeight.bold
+           )
+           ),
+    );
+  }
+}
